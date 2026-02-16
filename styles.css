@@ -1,0 +1,31 @@
+body {
+  background: #111;
+  color: white;
+  font-family: Arial;
+  padding: 20px;
+}
+
+.genre {
+  margin-bottom: 80px;
+}
+
+.genre-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heart-btn {
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.heart-btn.active {
+  color: hotpink;
+}
+
+.vote-count {
+  margin-bottom: 20px;
+}
