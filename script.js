@@ -1,5 +1,6 @@
 // ============================
-// FIREBASE IMPORTS (top-level!)
+// FIREBASE IMPORTS
+// ============================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { 
   getFirestore, 
@@ -12,6 +13,7 @@ import {
 
 // ============================
 // FIREBASE CONFIG
+// ============================
 const firebaseConfig = {
   apiKey: "AIzaSyA3TPLeIVhSgPClBcF0Y_IztKJqTYVZWJc",
   authDomain: "doujinflash.firebaseapp.com",
@@ -27,7 +29,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ============================
-// DOM CONTENT LOADED
+// MAIN LOGIC
+// ============================
 document.addEventListener("DOMContentLoaded", () => {
 
   // --- VOTING SYSTEM ---
@@ -41,9 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadVotes() {
       try {
         const snap = await getDoc(docRef);
-        countSpan.textContent = snap.exists() ? snap.data().count : 0;
-        if (!snap.exists()) await setDoc(docRef, { count: 0 });
-      } catch (e) { console.error(e); }
+        if (snap.exists()) {
+          countSpan.textContent = snap.data().count;
+        } else {
+          countSpan.textContent = 0;
+          await setDoc(docRef, { count: 0 });
+        }
+      } catch (e) {
+        console.error("Error loading votes:", e);
+      }
     }
 
     function checkLocalVote() {
@@ -63,14 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
           heartBtn.textContent = "❤️";
         }
         loadVotes();
-      } catch (e) { console.error(e); }
+      } catch (e) {
+        console.error("Error updating vote:", e);
+      }
     });
 
     loadVotes();
     checkLocalVote();
   });
 
-  // --- GALLERY ---
+  // --- GALLERY DATA ---
   const galleryData = {
     "Isekai Smartphone": [
       "https://www.patreon.com/posts/defeated-by-zako-123920788",
@@ -88,21 +99,27 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
   };
 
+  // --- LOAD IMAGES ---
   Object.keys(galleryData).forEach(sectionName => {
     const carousel = document.querySelector(`.genre[data-genre="${sectionName}"] .carousel`);
     if (!carousel) return;
 
     galleryData[sectionName].forEach(url => {
       const fileName = url.split("/").pop();
+
       const item = document.createElement("div");
       item.classList.add("carousel-item");
 
       const img = document.createElement("img");
       img.src = `./images/${fileName}.jpg`;
       img.onerror = function() {
+        console.warn("Image failed:", this.src);
         this.onerror = null;
         this.src = `./images/${fileName}.png`;
-        this.onerror = function() { this.src = `./images/${fileName}.webp`; };
+        this.onerror = function() {
+          console.warn("Image failed again:", this.src);
+          this.src = `./images/${fileName}.webp`;
+        };
       };
       img.onclick = () => window.open(url, "_blank");
 
