@@ -234,17 +234,50 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContainer.appendChild(section);
 
     // --- Carousel arrows & swipe support (REPLACE old handlers here) ---
-    const visibleItems = 4; // Show 4 items at once
+
+
+
+
+    // --- Carousel arrows (responsive scroll) ---
+    function getVisibleItems() {
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // item + gap
+      return Math.floor(carousel.offsetWidth / itemWidth);
+    }
 
     leftArrow.addEventListener("click", () => {
-      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // width + margin
+      const visibleItems = getVisibleItems();
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
       carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
     });
 
     rightArrow.addEventListener("click", () => {
-      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // width + margin
+      const visibleItems = getVisibleItems();
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
       carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
     });
+
+    // --- Swipe support ---
+    let xStart = null;
+    carousel.addEventListener("touchstart", e => xStart = e.touches[0].clientX, false);
+    carousel.addEventListener("touchmove", e => {
+      if (!xStart) return;
+      let xEnd = e.touches[0].clientX;
+      let xDiff = xStart - xEnd;
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
+      const visibleItems = getVisibleItems();
+
+      if (xDiff > 50) { // swipe left
+        carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
+      } else if (xDiff < -50) { // swipe right
+        carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
+      }
+      xStart = null;
+    }, false);
+
+
+
+
+
 
     // Swipe support
     let xStart = null;
