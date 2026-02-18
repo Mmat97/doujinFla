@@ -35,7 +35,7 @@ const galleryData = {
   "Spirit Chronicles": [
     { url: "https://www.patreon.com/posts/defeated-by-113020062", subgenre: "interrogation/rematch" },
     { url: "https://www.patreon.com/posts/rio-and-3-armies-115877764", subgenre: "dream/imposters" },
-    { url: "https://www.patreon.com/posts/liselottes-honey-120002486?", subgenre: "feet/seduction" }
+    { url: "https://www.patreon.com/posts/liselottes-honey-120002486", subgenre: "feet/seduction" }
   ],
 
   "Maid Dragon": [
