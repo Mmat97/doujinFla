@@ -30,19 +30,29 @@ h1 { text-align: center; margin: 20px 0; color: #fff; }
 
 .genre-header {
   display: flex;
-  justify-content: flex-start; /* Align content to the left */
+  justify-content: space-between; /* title left, heart/votes right */
   align-items: center;
-  gap: 20px; /* Space between title and heart/votes */
+  flex-wrap: nowrap; /* prevent wrapping to next line */
+  margin: 10px 0;
+  width: 100%;
 }
 
 .genre-header h2 {
   margin: 0;
   font-size: 1.5rem;
   color: #fff;
+  text-align: left; /* force left alignment */
+}
+
+.left-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 
-.left-side { display: flex; align-items: center; gap: 10px; }
+
+
 
 .heart-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 0; margin-right: 8px; transition: transform 0.2s; }
 .heart-btn:hover { transform: scale(1.2); }
