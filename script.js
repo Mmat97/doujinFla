@@ -228,6 +228,7 @@ const galleryData = {
   ]
 
 
+
   // ... continue adding remaining series from your list here in the same format
 };
 
