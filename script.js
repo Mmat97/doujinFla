@@ -33,19 +33,11 @@ const db = getFirestore(app);
 const galleryData = {
   "Isekai Smartphone": [
     { url: "https://www.patreon.com/posts/defeated-by-zako-123920788", subgenre: "feet/dream/harem" },
-    { url: "https://www.patreon.com/posts/defeated-by-zako-124092807", subgenre: "motherDaughter/bath" },
-    { url: "https://www.patreon.com/posts/royal-127866137", subgenre: "milfs/beach" },
-    { url: "https://www.patreon.com/posts/harem-switch-133782770", subgenre: "crossover/brainwashing/harem" },
-    { url: "https://www.patreon.com/posts/in-another-world-115302353", subgenre: "evilGuy/powerDrain" },
-    { url: "https://www.patreon.com/posts/isekai-2-5-138342705", subgenre: "grunts/olderFemales" },
-    { url: "https://www.patreon.com/posts/isekai-alternate-136385040", subgenre: "milfs/imposters" }
+    { url: "https://www.patreon.com/posts/defeated-by-zako-124092807", subgenre: "motherDaughter/bath" }
   ],
   "Spirit Chronicles": [
-    { url: "https://www.patreon.com/posts/defeated-by-113020062", subgenre: "interrogation/rematch" },
-    { url: "https://www.patreon.com/posts/rio-and-3-armies-115877764", subgenre: "dream/imposters" },
-    { url: "https://www.patreon.com/posts/liselottes-honey-120002486", subgenre: "feet/seduction" }
+    { url: "https://www.patreon.com/posts/defeated-by-113020062", subgenre: "interrogation/rematch" }
   ]
-  // Add other sections here...
 };
 
 // ============================
@@ -55,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContainer = document.getElementById("library-container");
 
   Object.keys(galleryData).forEach(genreName => {
-    // Section
     const section = document.createElement("section");
     section.classList.add("genre");
     section.dataset.genre = genreName;
@@ -85,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     header.appendChild(h2);
     section.appendChild(header);
 
-    // Carousel container
+    // Carousel
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
 
@@ -106,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     section.appendChild(carouselContainer);
     mainContainer.appendChild(section);
 
-    // --- Voting system ---
+    // Voting system
     const docRef = doc(db, "votes", genreName);
     const votedKey = "voted_" + genreName;
 
@@ -115,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const snap = await getDoc(docRef);
         voteCount.querySelector("span").textContent = snap.exists() ? snap.data().count : 0;
         if (!snap.exists()) await setDoc(docRef, { count: 0 });
-      } catch (e) { console.error("Error loading votes:", e); }
+      } catch (e) { console.error(e); }
     }
 
     function checkLocalVote() {
@@ -124,8 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     heartBtn.addEventListener("click", async () => {
       try {
-        const hasVoted = localStorage.getItem(votedKey);
-        if (hasVoted) {
+        if (localStorage.getItem(votedKey)) {
           await updateDoc(docRef, { count: increment(-1) });
           localStorage.removeItem(votedKey);
           heartBtn.textContent = "🤍";
@@ -135,13 +125,13 @@ document.addEventListener("DOMContentLoaded", () => {
           heartBtn.textContent = "❤️";
         }
         loadVotes();
-      } catch (e) { console.error("Error updating vote:", e); }
+      } catch (e) { console.error(e); }
     });
 
     loadVotes();
     checkLocalVote();
 
-    // --- Populate carousel ---
+    // Populate carousel
     galleryData[genreName].forEach(itemData => {
       const fileName = itemData.url.split("/").pop();
       const item = document.createElement("div");
@@ -168,9 +158,9 @@ document.addEventListener("DOMContentLoaded", () => {
       carousel.appendChild(item);
     });
 
-    // --- Carousel arrows & swipe ---
+    // Carousel arrows
     function getVisibleItems() {
-      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // gap
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
       return Math.floor(carousel.offsetWidth / itemWidth) || 1;
     }
 
@@ -199,6 +189,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
       xStart = null;
     }, false);
-
   });
 });
