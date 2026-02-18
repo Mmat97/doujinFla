@@ -85,16 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
     section.appendChild(carouselContainer);
     mainContainer.appendChild(section);
 
-    // Voting system
-    const docRef = db.collection("votes").doc(genreName);
+    // Voting system with try/catch fallback
     const votedKey = "voted_" + genreName;
 
     async function loadVotes() {
       try {
+        const docRef = db.collection("votes").doc(genreName);
         const snap = await docRef.get();
         voteCount.querySelector("span").textContent = snap.exists ? snap.data().count : 0;
         if (!snap.exists) await docRef.set({ count: 0 });
-      } catch (e) { console.error(e); }
+      } catch (e) {
+        console.warn("Firestore unavailable, using local fallback:", e);
+        // fallback so the page still works
+        voteCount.querySelector("span").textContent = 0;
+      }
     }
 
     function checkLocalVote() {
@@ -103,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     heartBtn.addEventListener("click", async () => {
       try {
+        const docRef = db.collection("votes").doc(genreName);
         if (localStorage.getItem(votedKey)) {
           await docRef.update({ count: firebase.firestore.FieldValue.increment(-1) });
           localStorage.removeItem(votedKey);
@@ -113,7 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
           heartBtn.textContent = "❤️";
         }
         loadVotes();
-      } catch (e) { console.error(e); }
+      } catch (e) {
+        console.warn("Vote update failed, using local fallback:", e);
+        const span = voteCount.querySelector("span");
+        let val = parseInt(span.textContent) || 0;
+        if (localStorage.getItem(votedKey)) { val--; localStorage.removeItem(votedKey); heartBtn.textContent = "🤍"; }
+        else { val++; localStorage.setItem(votedKey, "true"); heartBtn.textContent = "❤️"; }
+        span.textContent = val;
+      }
     });
 
     loadVotes();
