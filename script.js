@@ -419,7 +419,7 @@ const galleryData = {
   ],
 
   "Game Translations": [
-    { url: "https://drive.google.com/file/d/11w82lEjf0ttE1fCfzezbujpz8xQriIOZ/view?usp=sharing" }
+    { url: "https://drive.google.com/file/d/11w82lEjf0ttE1fCfzezbujpz8xQriIOZ/view?usp=sharing", subgenre: "excessm" }
   ],
 
   "Short Posts": [
