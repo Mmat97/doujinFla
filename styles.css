@@ -3,29 +3,83 @@ body {
   color: white;
   font-family: Arial;
   padding: 20px;
+  margin: 0;
 }
 
 .genre {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .genre-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.left-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .heart-btn {
-  font-size: 28px;
+  font-size: 26px;
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.heart-btn.active {
-  color: hotpink;
+.vote-count {
+  margin: 0;
 }
 
-.vote-count {
-  margin-bottom: 20px;
+.carousel-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 15px;
+  padding: 15px 0;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  min-width: 160px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.carousel-item p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: white;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 600px) {
+  .carousel-item {
+    min-width: 130px;
+  }
 }
