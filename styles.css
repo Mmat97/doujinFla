@@ -1,9 +1,14 @@
 body {
-  background: #111;
+  background: black;
   color: white;
-  font-family: Arial;
-  padding: 20px;
+  font-family: Arial, sans-serif;
   margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .genre {
@@ -28,6 +33,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
 .vote-count {
@@ -37,15 +43,14 @@ body {
 .carousel-container {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
 .carousel {
   display: flex;
   overflow-x: auto;
-  scroll-behavior: smooth;
   gap: 15px;
-  padding: 15px 0;
+  padding: 20px 0;
+  scroll-behavior: smooth;
 }
 
 .carousel::-webkit-scrollbar {
@@ -55,31 +60,35 @@ body {
 .carousel-item {
   min-width: 160px;
   flex-shrink: 0;
-  text-align: center;
 }
 
 .carousel-item img {
   width: 100%;
   border-radius: 8px;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.carousel-item p {
-  font-size: 14px;
-  margin-top: 5px;
+.carousel-item img:hover {
+  transform: scale(1.05);
 }
 
 .arrow {
   background: none;
   border: none;
   font-size: 22px;
-  cursor: pointer;
   color: white;
+  cursor: pointer;
+  padding: 10px;
 }
 
-/* 📱 Mobile adjustments */
+/* Mobile */
 @media (max-width: 600px) {
   .carousel-item {
     min-width: 130px;
+  }
+
+  .arrow {
+    font-size: 18px;
   }
 }

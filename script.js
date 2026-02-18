@@ -1,4 +1,4 @@
-// 🔥 Firebase Imports
+// Firebase Imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { 
   getFirestore, 
@@ -10,7 +10,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 
-// 🔥 Your Firebase Config
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyA3TPLeIVhSgPClBcF0Y_IztKJqTYVZWJc",
   authDomain: "doujinflash.firebaseapp.com",
@@ -22,14 +22,14 @@ const firebaseConfig = {
 };
 
 
-// 🔥 Initialize Firebase
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-// =============================
+// ============================
 // ❤️ VOTING SYSTEM
-// =============================
+// ============================
 
 document.querySelectorAll(".genre").forEach(section => {
 
@@ -39,7 +39,6 @@ document.querySelectorAll(".genre").forEach(section => {
   const docRef = doc(db, "votes", genreName);
   const votedKey = "voted_" + genreName;
 
-  // Load vote count
   async function loadVotes() {
     const snap = await getDoc(docRef);
 
@@ -51,25 +50,21 @@ document.querySelectorAll(".genre").forEach(section => {
     }
   }
 
-  // Check localStorage for heart state
   function checkLocalVote() {
     if (localStorage.getItem(votedKey)) {
       heartBtn.textContent = "❤️";
     }
   }
 
-  // Toggle vote
   heartBtn.addEventListener("click", async () => {
 
     const hasVoted = localStorage.getItem(votedKey);
 
     if (hasVoted) {
-      // Remove vote
       await updateDoc(docRef, { count: increment(-1) });
       localStorage.removeItem(votedKey);
       heartBtn.textContent = "🤍";
     } else {
-      // Add vote
       await updateDoc(docRef, { count: increment(1) });
       localStorage.setItem(votedKey, "true");
       heartBtn.textContent = "❤️";
@@ -83,36 +78,43 @@ document.querySelectorAll(".genre").forEach(section => {
 });
 
 
-// =============================
-// 🖼 LOAD GALLERY FROM List.txt
-// =============================
+// ============================
+// 🖼 LOAD GALLERY (NO LABELS)
+// ============================
 
-async function loadGallery() {
+const galleryData = {
+  "Isekai Smartphone": [
+    "https://www.patreon.com/posts/defeated-by-zako-123920788",
+    "https://www.patreon.com/posts/defeated-by-zako-124092807",
+    "https://www.patreon.com/posts/royal-127866137",
+    "https://www.patreon.com/posts/harem-switch-133782770",
+    "https://www.patreon.com/posts/in-another-world-115302353",
+    "https://www.patreon.com/posts/isekai-2-5-138342705",
+    "https://www.patreon.com/posts/isekai-alternate-136385040"
+  ],
+  "Spirit Chronicles": [
+    "https://www.patreon.com/posts/defeated-by-113020062",
+    "https://www.patreon.com/posts/rio-and-3-armies-115877764",
+    "https://www.patreon.com/posts/liselottes-honey-120002486"
+  ]
+};
 
-  const response = await fetch("List.txt");
-  const text = await response.text();
-  const lines = text.split("\n");
 
-  lines.forEach(line => {
+Object.keys(galleryData).forEach(sectionName => {
 
-    if (!line.trim()) return;
+  const carousel = document.querySelector(
+    `.genre[data-genre="${sectionName}"] .carousel`
+  );
 
-    const [url, sectionName, subgenre] = line.split("|");
+  galleryData[sectionName].forEach(url => {
 
-    const carousel = document.querySelector(
-      `.genre[data-genre="${sectionName.trim()}"] .carousel`
-    );
-
-    if (!carousel) return;
-
-    const fileName = url.trim().split("/").pop();
+    const fileName = url.split("/").pop();
 
     const item = document.createElement("div");
     item.classList.add("carousel-item");
 
     const img = document.createElement("img");
 
-    // Try .jpg → .png → .webp
     img.src = `images/${fileName}.jpg`;
     img.onerror = function () {
       this.onerror = null;
@@ -122,42 +124,29 @@ async function loadGallery() {
       };
     };
 
-    img.onclick = () => {
-      window.open(url.trim(), "_blank");
-    };
-
-    const label = document.createElement("p");
-    label.textContent = subgenre ? subgenre.trim() : "";
+    img.onclick = () => window.open(url, "_blank");
 
     item.appendChild(img);
-    item.appendChild(label);
     carousel.appendChild(item);
   });
-}
-
-loadGallery();
+});
 
 
-// =============================
-// ⬅➡ ARROW SCROLLING
-// =============================
+// ============================
+// ⬅➡ ARROW SCROLL
+// ============================
 
 document.querySelectorAll(".genre").forEach(section => {
 
   const carousel = section.querySelector(".carousel");
-  const leftArrow = section.querySelector(".arrow.left");
-  const rightArrow = section.querySelector(".arrow.right");
+  const left = section.querySelector(".arrow.left");
+  const right = section.querySelector(".arrow.right");
 
-  if (leftArrow) {
-    leftArrow.addEventListener("click", () => {
-      carousel.scrollBy({ left: -300, behavior: "smooth" });
-    });
-  }
+  left.addEventListener("click", () => {
+    carousel.scrollBy({ left: -300, behavior: "smooth" });
+  });
 
-  if (rightArrow) {
-    rightArrow.addEventListener("click", () => {
-      carousel.scrollBy({ left: 300, behavior: "smooth" });
-    });
-  }
-
+  right.addEventListener("click", () => {
+    carousel.scrollBy({ left: 300, behavior: "smooth" });
+  });
 });
