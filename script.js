@@ -29,13 +29,13 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/harem-switch-133782770", subgenre: "crossover/brainwashing/harem" },
     { url: "https://www.patreon.com/posts/in-another-world-115302353", subgenre: "evilGuy/powerDrain" },
     { url: "https://www.patreon.com/posts/isekai-2-5-138342705", subgenre: "grunts/olderFemales" },
-    { url: "https://www.patreon.com/posts/isekai-alternate-136385040?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link", subgenre: "milfs/imposters" }
+    { url: "https://www.patreon.com/posts/isekai-alternate-136385040", subgenre: "milfs/imposters" }
   ],
 
   "Spirit Chronicles": [
     { url: "https://www.patreon.com/posts/defeated-by-113020062", subgenre: "interrogation/rematch" },
     { url: "https://www.patreon.com/posts/rio-and-3-armies-115877764", subgenre: "dream/imposters" },
-    { url: "https://www.patreon.com/posts/liselottes-honey-120002486?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link", subgenre: "feet/seduction" }
+    { url: "https://www.patreon.com/posts/liselottes-honey-120002486", subgenre: "feet/seduction" }
   ],
 
   "Maid Dragon": [
