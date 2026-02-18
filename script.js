@@ -30,7 +30,6 @@ const db = getFirestore(app);
 // ============================
 // GALLERY DATA
 // ============================
-// Example: replace with full converted LIST.txt data
 const galleryData = {
   "Isekai Smartphone": [
     { url: "https://www.patreon.com/posts/defeated-by-zako-123920788", subgenre: "feet/dream/harem" },
@@ -45,20 +44,8 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/defeated-by-113020062", subgenre: "interrogation/rematch" },
     { url: "https://www.patreon.com/posts/rio-and-3-armies-115877764", subgenre: "dream/imposters" },
     { url: "https://www.patreon.com/posts/liselottes-honey-120002486", subgenre: "feet/seduction" }
-  ],
-  "Maid Dragon": [
-    { url: "https://www.patreon.com/posts/new-doujinshi-140518041", subgenre: "imposters/rematch" }
-  ],
-  "Musaigen no Phantom World": [
-    { url: "https://www.patreon.com/posts/haruhiko-x-x-111367831", subgenre: "harem" }
-  ],
-  "Tsugumomo": [
-    { url: "https://www.patreon.com/posts/tsugualbum-115118952", subgenre: "romance/brainwashing" }
-  ],
-  "Knight's & Magic": [
-    { url: "https://www.patreon.com/posts/breasts-and-120933745", subgenre: "evilGirl/blackmailedFemale" }
   ]
-  // continue adding other sections here...
+  // Add other sections here...
 };
 
 // ============================
@@ -68,12 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContainer = document.getElementById("library-container");
 
   Object.keys(galleryData).forEach(genreName => {
-    // ----- Section -----
+    // Section
     const section = document.createElement("section");
     section.classList.add("genre");
     section.dataset.genre = genreName;
 
-    // ----- Header -----
+    // Header
     const header = document.createElement("div");
     header.classList.add("genre-header");
 
@@ -98,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     header.appendChild(h2);
     section.appendChild(header);
 
-    // ----- Carousel -----
+    // Carousel container
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
 
@@ -119,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     section.appendChild(carouselContainer);
     mainContainer.appendChild(section);
 
-    // ----- Voting system -----
+    // --- Voting system ---
     const docRef = doc(db, "votes", genreName);
     const votedKey = "voted_" + genreName;
 
@@ -154,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadVotes();
     checkLocalVote();
 
-    // ----- Populate carousel items -----
+    // --- Populate carousel ---
     galleryData[genreName].forEach(itemData => {
       const fileName = itemData.url.split("/").pop();
       const item = document.createElement("div");
@@ -171,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       item.appendChild(img);
 
-      // Subgenre label
       if (itemData.subgenre) {
         const subgenreP = document.createElement("p");
         subgenreP.classList.add("subgenre");
@@ -182,24 +168,20 @@ document.addEventListener("DOMContentLoaded", () => {
       carousel.appendChild(item);
     });
 
-    // ----- Carousel arrows & swipe support -----
+    // --- Carousel arrows & swipe ---
     function getVisibleItems() {
-      const item = carousel.querySelector(".carousel-item");
-      if (!item) return 1;
-      const itemWidth = item.offsetWidth + 10; // include gap
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // gap
       return Math.floor(carousel.offsetWidth / itemWidth) || 1;
     }
 
     leftArrow.addEventListener("click", () => {
-      const visibleItems = getVisibleItems();
       const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
-      carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
+      carousel.scrollBy({ left: -(itemWidth * getVisibleItems()), behavior: "smooth" });
     });
 
     rightArrow.addEventListener("click", () => {
-      const visibleItems = getVisibleItems();
       const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
-      carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
+      carousel.scrollBy({ left: itemWidth * getVisibleItems(), behavior: "smooth" });
     });
 
     // Swipe support
@@ -207,18 +189,16 @@ document.addEventListener("DOMContentLoaded", () => {
     carousel.addEventListener("touchstart", e => xStart = e.touches[0].clientX, false);
     carousel.addEventListener("touchmove", e => {
       if (!xStart) return;
-      let xEnd = e.touches[0].clientX;
-      let xDiff = xStart - xEnd;
-      const visibleItems = getVisibleItems();
+      const xEnd = e.touches[0].clientX;
+      const xDiff = xStart - xEnd;
       const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
+      const visible = getVisibleItems();
 
-      if (xDiff > 50) {          // swipe left
-        carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
-      } else if (xDiff < -50) {  // swipe right
-        carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
-      }
+      if (xDiff > 50) carousel.scrollBy({ left: itemWidth * visible, behavior: "smooth" });
+      else if (xDiff < -50) carousel.scrollBy({ left: -(itemWidth * visible), behavior: "smooth" });
+
       xStart = null;
     }, false);
 
-  }); // end of Object.keys().forEach
-}); // end of DOMContentLoaded
+  });
+});
