@@ -96,20 +96,24 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #111;   /* dark black/gray box */
-  padding: 5px 10px;
-  border-radius: 6px;
 }
 
-/* Heart button */
+/* Clickable heart without any box */
 .heart-btn {
-  background: none;          /* transparent button background */
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #fff;              /* white heart */
-  padding: 0;
+  background: none;      /* no background */
+  border: none;          /* no border */
+  color: white;          /* heart color */
+  font-size: 1.5rem;     /* size of heart */
+  cursor: pointer;       /* pointer on hover */
+  padding: 0;            /* no extra space */
+  margin-right: 8px;     /* optional spacing from vote count */
+  transition: transform 0.2s;
 }
+
+.heart-btn:hover {
+  transform: scale(1.2); /* subtle zoom on hover */
+}
+
 
 .vote-count {
   margin: 0;
