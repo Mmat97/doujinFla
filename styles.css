@@ -98,6 +98,16 @@ h1 {
   gap: 10px;
 }
 
+/* Heart button */
+.heart-btn {
+  background: none;          /* transparent button background */
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;              /* white heart */
+  padding: 0;
+}
+
 .vote-count {
   margin: 0;
   color: #fff;
