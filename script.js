@@ -225,11 +225,64 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/interrogation-of-125342510", subgenre: "evilGirl/dreams/imposters" },
     { url: "https://www.patreon.com/posts/training-of-of-128003492", subgenre: "training" },
     { url: "https://www.patreon.com/posts/gratefulness-124381578", subgenre: "feet/harem" }
+  ],
+
+
+
+  "Gundam": [
+    { url: "https://www.patreon.com/posts/fragments-of-116386240", subgenre: "crossover/romance/beach/evilGirl" },
+    { url: "https://www.patreon.com/posts/not-right-size-123320383", subgenre: "romance" },
+    { url: "https://www.patreon.com/posts/fragments-of-2-127226975", subgenre: "evilGirl/romance/dreams" },
+    { url: "https://www.patreon.com/posts/framing-sekai-124646673", subgenre: "sports/evilGirl/grunts" },
+    { url: "https://www.patreon.com/posts/red-meteor-blue-132736738", subgenre: "crossover/damsel/romance" },
+    { url: "https://www.patreon.com/posts/weaponized-video-125687077", subgenre: "sports/beach" }
+  ],
+
+  "Cute Girl in the Hero’s Party": [
+    { url: "https://www.patreon.com/posts/interrogated-by-150177807", subgenre: "milfs/interrogation" }
+  ],
+
+  "A-Rank Party": [
+    { url: "https://www.patreon.com/posts/short-comic-128087610", subgenre: "antiNTR" },
+    { url: "https://www.patreon.com/posts/destroy-hum-plan-128364215", subgenre: "dream/antiNTR/harem" },
+    { url: "https://www.patreon.com/posts/destroy-tension-129163587", subgenre: "harem" },
+    { url: "https://www.patreon.com/posts/favor-from-yuke-128313940", subgenre: "training/olderFemale" },
+    { url: "https://www.patreon.com/posts/destroy-victory-129542195", subgenre: "dreams/imposters" }
+  ],
+
+  "The Healer Who Was": [
+    { url: "https://www.patreon.com/posts/healer-is-in-115627195", subgenre: "disgust/imposters" }
+  ],
+
+  "Digimon Time Stranger": [
+    { url: "https://www.patreon.com/posts/fake-erika-131553443", subgenre: "dreams/imposters" },
+    { url: "https://www.patreon.com/posts/witchmons-dream-149212869", subgenre: "dreams/imposters" },
+    { url: "https://www.patreon.com/posts/self-aware-bully-149426803", subgenre: "romance" },
+    { url: "https://www.patreon.com/posts/fighting-vs-149510403", subgenre: "imposters" },
+    { url: "https://www.patreon.com/posts/damsel-to-149791269", subgenre: "damsel/tickling/romance" }
+  ],
+
+  "Xenoblade": [
+    { url: "https://www.patreon.com/posts/confess-your-120512035", subgenre: "interrogation" }
+  ],
+
+  "Dragon Quest 3D": [
+    { url: "https://www.patreon.com/posts/chest-quest-xi-136022246", subgenre: "damsel/grunts" }
+  ],
+
+  "Marvel Rivals": [
+    { url: "https://www.patreon.com/posts/snow-bunny-mind-126528747", subgenre: "crossover/mindControl" },
+    { url: "https://www.patreon.com/posts/yokai-frost-134153792", subgenre: "damsel/tickling/romance" }
+  ],
+
+  "Final Fantasy": [
+    { url: "https://www.patreon.com/posts/evil-ambush-135792084", subgenre: "damsel/tickling" }
+  ],
+
+  "Jak": [
+    { url: "https://www.patreon.com/posts/based-on-that-3s-128003700", subgenre: "NTR" }
   ]
 
-
-
-  // ... continue adding remaining series from your list here in the same format
 };
 
 
