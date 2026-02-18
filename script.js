@@ -1,36 +1,40 @@
-document.addEventListener("DOMContentLoaded", async () => {
+// ============================
+// FIREBASE IMPORTS
+// ============================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import { 
+  getFirestore, 
+  doc, 
+  getDoc, 
+  setDoc, 
+  updateDoc, 
+  increment 
+} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
-  // Firebase Imports
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-  import { 
-    getFirestore, 
-    doc, 
-    getDoc, 
-    setDoc, 
-    updateDoc, 
-    increment 
-  } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+// ============================
+// FIREBASE CONFIG
+// ============================
+const firebaseConfig = {
+  apiKey: "AIzaSyA3TPLeIVhSgPClBcF0Y_IztKJqTYVZWJc",
+  authDomain: "doujinflash.firebaseapp.com",
+  projectId: "doujinflash",
+  storageBucket: "doujinflash.firebasestorage.app",
+  messagingSenderId: "758136407006",
+  appId: "1:758136407006:web:4d7a40d9bcdff4fca0134f",
+  measurementId: "G-6G8VQ2LBKJ"
+};
 
-  // Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyA3TPLeIVhSgPClBcF0Y_IztKJqTYVZWJc",
-    authDomain: "doujinflash.firebaseapp.com",
-    projectId: "doujinflash",
-    storageBucket: "doujinflash.firebasestorage.app",
-    messagingSenderId: "758136407006",
-    appId: "1:758136407006:web:4d7a40d9bcdff4fca0134f",
-    measurementId: "G-6G8VQ2LBKJ"
-  };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+// ============================
+// MAIN LOGIC
+// ============================
+document.addEventListener("DOMContentLoaded", () => {
 
-  // ============================
-  // ❤️ VOTING SYSTEM
-  // ============================
+  // --- VOTING SYSTEM ---
   document.querySelectorAll(".genre").forEach(section => {
-
     const genreName = section.dataset.genre;
     const heartBtn = section.querySelector(".heart-btn");
     const countSpan = section.querySelector(".vote-count span");
@@ -42,9 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const snap = await getDoc(docRef);
         countSpan.textContent = snap.exists() ? snap.data().count : 0;
         if (!snap.exists()) await setDoc(docRef, { count: 0 });
-      } catch (e) {
-        console.error("Error loading votes:", e);
-      }
+      } catch (e) { console.error("Error loading votes:", e); }
     }
 
     function checkLocalVote() {
@@ -64,18 +66,14 @@ document.addEventListener("DOMContentLoaded", async () => {
           heartBtn.textContent = "❤️";
         }
         loadVotes();
-      } catch (e) {
-        console.error("Error updating vote:", e);
-      }
+      } catch (e) { console.error("Error updating vote:", e); }
     });
 
     loadVotes();
     checkLocalVote();
   });
 
-  // ============================
-  // 🖼 LOAD GALLERY (NO LABELS)
-  // ============================
+  // --- GALLERY ---
   const galleryData = {
     "Isekai Smartphone": [
       "https://www.patreon.com/posts/defeated-by-zako-123920788",
@@ -116,9 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // ============================
-  // ⬅➡ ARROW SCROLL
-  // ============================
+  // --- ARROW SCROLL ---
   document.querySelectorAll(".genre").forEach(section => {
     const carousel = section.querySelector(".carousel");
     const left = section.querySelector(".arrow.left");
