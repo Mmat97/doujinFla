@@ -1,5 +1,4 @@
-// Wait for DOM to be ready
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
   // Firebase Imports
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
@@ -11,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDoc, 
     increment 
   } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-
 
   // Firebase Config
   const firebaseConfig = {
@@ -31,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================
   // ❤️ VOTING SYSTEM
   // ============================
-
   document.querySelectorAll(".genre").forEach(section => {
 
     const genreName = section.dataset.genre;
@@ -43,27 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadVotes() {
       try {
         const snap = await getDoc(docRef);
-        if (snap.exists()) {
-          countSpan.textContent = snap.data().count;
-        } else {
-          await setDoc(docRef, { count: 0 });
-          countSpan.textContent = 0;
-        }
+        countSpan.textContent = snap.exists() ? snap.data().count : 0;
+        if (!snap.exists()) await setDoc(docRef, { count: 0 });
       } catch (e) {
         console.error("Error loading votes:", e);
       }
     }
 
     function checkLocalVote() {
-      if (localStorage.getItem(votedKey)) {
-        heartBtn.textContent = "❤️";
-      }
+      if (localStorage.getItem(votedKey)) heartBtn.textContent = "❤️";
     }
 
     heartBtn.addEventListener("click", async () => {
       try {
         const hasVoted = localStorage.getItem(votedKey);
-
         if (hasVoted) {
           await updateDoc(docRef, { count: increment(-1) });
           localStorage.removeItem(votedKey);
@@ -73,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem(votedKey, "true");
           heartBtn.textContent = "❤️";
         }
-
         loadVotes();
       } catch (e) {
         console.error("Error updating vote:", e);
@@ -84,11 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     checkLocalVote();
   });
 
-
   // ============================
   // 🖼 LOAD GALLERY (NO LABELS)
   // ============================
-
   const galleryData = {
     "Isekai Smartphone": [
       "https://www.patreon.com/posts/defeated-by-zako-123920788",
@@ -111,24 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!carousel) return;
 
     galleryData[sectionName].forEach(url => {
-
       const fileName = url.split("/").pop();
-
       const item = document.createElement("div");
       item.classList.add("carousel-item");
 
       const img = document.createElement("img");
-
-      // Use relative path for GitHub Pages
       img.src = `./images/${fileName}.jpg`;
-      img.onerror = function () {
+      img.onerror = function() {
         this.onerror = null;
         this.src = `./images/${fileName}.png`;
-        this.onerror = function () {
-          this.src = `./images/${fileName}.webp`;
-        };
+        this.onerror = function() { this.src = `./images/${fileName}.webp`; };
       };
-
       img.onclick = () => window.open(url, "_blank");
 
       item.appendChild(img);
@@ -136,23 +116,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
   // ============================
   // ⬅➡ ARROW SCROLL
   // ============================
-
   document.querySelectorAll(".genre").forEach(section => {
     const carousel = section.querySelector(".carousel");
     const left = section.querySelector(".arrow.left");
     const right = section.querySelector(".arrow.right");
 
-    if (left) left.addEventListener("click", () => {
-      carousel.scrollBy({ left: -300, behavior: "smooth" });
-    });
-
-    if (right) right.addEventListener("click", () => {
-      carousel.scrollBy({ left: 300, behavior: "smooth" });
-    });
+    if (left) left.addEventListener("click", () => carousel.scrollBy({ left: -300, behavior: "smooth" }));
+    if (right) right.addEventListener("click", () => carousel.scrollBy({ left: 300, behavior: "smooth" }));
   });
 
 });

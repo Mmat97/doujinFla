@@ -1,3 +1,6 @@
+/* =========================
+   GENERAL STYLES
+========================= */
 body {
   background: black;
   color: white;
@@ -40,6 +43,9 @@ h1 {
   margin: 0;
 }
 
+/* =========================
+   CAROUSEL
+========================= */
 .carousel-container {
   display: flex;
   align-items: center;
@@ -64,6 +70,9 @@ h1 {
 
 .carousel-item img {
   width: 100%;
+  height: auto;
+  max-height: 80vh;       /* scale to viewport */
+  object-fit: contain;     /* fit different aspect ratios */
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -73,6 +82,9 @@ h1 {
   transform: scale(1.05);
 }
 
+/* =========================
+   ARROWS
+========================= */
 .arrow {
   background: none;
   border: none;
@@ -82,7 +94,9 @@ h1 {
   padding: 10px;
 }
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 @media (max-width: 600px) {
   .carousel-item {
     min-width: 130px;
