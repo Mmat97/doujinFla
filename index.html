@@ -1,54 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>D-LIBRARY</title>
-
-<!-- Styles with cache-busting -->
-<link rel="stylesheet" href="styles.css?v=4">
-
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <h1>D-LIBRARY</h1>
 
-<!-- ================= ISEKAI SMARTPHONE ================= -->
-<section class="genre" data-genre="Isekai Smartphone">
-  <div class="genre-header">
-    <div class="left-side">
-      <button class="heart-btn">🤍</button>
-      <p class="vote-count">Votes: <span>0</span></p>
-    </div>
-    <h2>Isekai Smartphone</h2>
-  </div>
+<!-- Container where JS will inject genre sections -->
+<div id="library-container"></div>
 
-  <div class="carousel-container">
-    <button class="arrow left">⬅</button>
-    <div class="carousel"></div>
-    <button class="arrow right">➡</button>
-  </div>
-</section>
-
-<!-- ================= SPIRIT CHRONICLES ================= -->
-<section class="genre" data-genre="Spirit Chronicles">
-  <div class="genre-header">
-    <div class="left-side">
-      <button class="heart-btn">🤍</button>
-      <p class="vote-count">Votes: <span>0</span></p>
-    </div>
-    <h2>Spirit Chronicles</h2>
-  </div>
-
-  <div class="carousel-container">
-    <button class="arrow left">⬅</button>
-    <div class="carousel"></div>
-    <button class="arrow right">➡</button>
-  </div>
-</section>
-
-<!-- JS with cache-busting -->
-<script type="module" src="script.js?v=4"></script>
-
+<script type="module" src="script.js"></script>
 </body>
 </html>

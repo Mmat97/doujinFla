@@ -82,6 +82,15 @@ h1 {
   transform: scale(1.05);
 }
 
+.carousel-item p.subgenre {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  color: #ccc;
+  text-align: center;
+  word-break: break-word;
+}
+
+
 /* =========================
    ARROWS
 ========================= */
