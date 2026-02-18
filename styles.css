@@ -1,117 +1,53 @@
-/* =========================
-   GENERAL STYLES
-========================= */
-body {
-  background: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.genre {
-  margin-bottom: 60px;
-}
-
-.genre-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.left-side {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.heart-btn {
-  font-size: 26px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-}
-
-.vote-count {
-  margin: 0;
-}
-
-/* =========================
-   CAROUSEL
-========================= */
+/* ========================= */
+/* Carousel container & items */
+/* ========================= */
 .carousel-container {
-  display: flex;
-  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
 .carousel {
   display: flex;
-  overflow-x: auto;
-  gap: 15px;
-  padding: 20px 0;
+  transition: transform 0.3s ease;
   scroll-behavior: smooth;
 }
 
-.carousel::-webkit-scrollbar {
-  display: none;
-}
-
 .carousel-item {
-  min-width: 160px;
-  flex-shrink: 0;
+  flex: 0 0 25%; /* 4 items visible at once */
+  box-sizing: border-box;
+  margin-right: 10px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .carousel-item img {
   width: 100%;
-  height: auto;
-  max-height: 80vh;       /* scale to viewport */
-  object-fit: contain;     /* fit different aspect ratios */
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  border-radius: 6px;
 }
 
-.carousel-item img:hover {
-  transform: scale(1.05);
-}
+/* Responsive adjustments */
+@media (max-width: 1024px) { .carousel-item { flex: 0 0 33.33%; } } /* 3 items */
+@media (max-width: 768px) { .carousel-item { flex: 0 0 50%; } }       /* 2 items */
+@media (max-width: 480px) { .carousel-item { flex: 0 0 100%; } }      /* 1 item */
 
-.carousel-item p.subgenre {
-  margin: 5px 0 0 0;
-  font-size: 14px;
-  color: #ccc;
-  text-align: center;
-  word-break: break-word;
-}
-
-
-/* =========================
-   ARROWS
-========================= */
 .arrow {
-  background: none;
-  border: none;
-  font-size: 22px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
   color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
-  padding: 10px;
+  border-radius: 4px;
+  z-index: 10;
 }
 
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 600px) {
-  .carousel-item {
-    min-width: 130px;
-  }
+.arrow.left { left: 0; }
+.arrow.right { right: 0; }
 
-  .arrow {
-    font-size: 18px;
-  }
+.arrow:hover {
+  background: rgba(0,0,0,0.7);
 }

@@ -225,7 +225,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Carousel arrows ---
-    leftArrow.addEventListener("click", () => carousel.scrollBy({ left: -300, behavior: "smooth" }));
-    rightArrow.addEventListener("click", () => carousel.scrollBy({ left: 300, behavior: "smooth" }));
+
+    carouselContainer.appendChild(leftArrow);
+    carouselContainer.appendChild(carousel);
+    carouselContainer.appendChild(rightArrow);
+    section.appendChild(carouselContainer);
+
+    mainContainer.appendChild(section);
+
+    // --- Carousel arrows & swipe support (REPLACE old handlers here) ---
+    const visibleItems = 4; // Show 4 items at once
+
+    leftArrow.addEventListener("click", () => {
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // width + margin
+      carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
+    });
+
+    rightArrow.addEventListener("click", () => {
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // width + margin
+      carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
+    });
+
+    // Swipe support
+    let xStart = null;
+    carousel.addEventListener("touchstart", e => xStart = e.touches[0].clientX, false);
+    carousel.addEventListener("touchmove", e => {
+      if (!xStart) return;
+      let xEnd = e.touches[0].clientX;
+      let xDiff = xStart - xEnd;
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
+
+      if (xDiff > 50) { // swipe left
+        carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
+      } else if (xDiff < -50) { // swipe right
+        carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
+      }
+      xStart = null;
+    }, false);
+
   });
 });

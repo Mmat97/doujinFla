@@ -1,18 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D-LIBRARY</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
 
-<h1>D-LIBRARY</h1>
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+}
 
-<!-- Container where JS will inject genre sections -->
-<div id="library-container"></div>
+.carousel {
+  display: flex;
+  transition: transform 0.3s ease;
+  scroll-behavior: smooth;
+}
 
-<script type="module" src="script.js"></script>
-</body>
-</html>
+.carousel-item {
+  flex: 0 0 25%; /* 4 items visible at once */
+  box-sizing: border-box;
+  margin-right: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.carousel-item img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) { .carousel-item { flex: 0 0 33.33%; } } /* 3 items */
+@media (max-width: 768px) { .carousel-item { flex: 0 0 50%; } }       /* 2 items */
+@media (max-width: 480px) { .carousel-item { flex: 0 0 100%; } }      /* 1 item */
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.arrow.left { left: 0; }
+.arrow.right { right: 0; }
+
+.arrow:hover {
+  background: rgba(0,0,0,0.7);
+}
