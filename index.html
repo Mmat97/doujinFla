@@ -6,11 +6,11 @@
 <title>D-LIBRARY</title>
 
 <!-- CSS -->
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./styles.css?v=1">
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js" defer></script>
-<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js" defer></script>
+<!-- Firebase (loaded statically, no defer) -->
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
 
 </head>
 <body>
@@ -20,8 +20,8 @@
 <!-- Container where JS will inject genre sections -->
 <div id="library-container"></div>
 
-<!-- Main script -->
-<script src="./script.js" defer></script>
+<!-- Main script with defer and cache-busting -->
+<script src="./script.js?v=1" defer></script>
 
 </body>
 </html>
