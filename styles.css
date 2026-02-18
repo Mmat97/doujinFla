@@ -16,7 +16,6 @@ h1 {
   color: #fff;
 }
 
-
 /* ========================= */
 /* Carousel container & items */
 /* ========================= */
@@ -28,14 +27,14 @@ h1 {
 
 .carousel {
   display: flex;
-  gap: 10px;               /* space between items */
+  gap: 10px;               
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 10px 0;
 }
 
 .carousel-item {
-  flex: 0 0 100%;           /* default: 1 per view for mobile */
+  flex: 0 0 100%;           
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
@@ -44,15 +43,23 @@ h1 {
 .carousel-item img {
   width: 100%;
   border-radius: 6px;
+  border: 2px solid #fff; /* optional border so images pop on black */
+}
+
+/* Subgenre text */
+.subgenre {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-top: 5px;
 }
 
 /* Responsive adjustments */
 @media (min-width: 480px) {
-  .carousel-item { flex: 0 0 calc(50% - 10px); }   /* 2 items */
+  .carousel-item { flex: 0 0 calc(50% - 10px); }   
 }
 
 @media (min-width: 768px) {
-  .carousel-item { flex: 0 0 calc(25% - 10px); }   /* 4 items */
+  .carousel-item { flex: 0 0 calc(25% - 10px); }   
 }
 
 /* Carousel arrows */
@@ -60,8 +67,8 @@ h1 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
+  background: rgba(255,255,255,0.2); /* lighter arrows on dark bg */
+  color: #fff;
   border: none;
   font-size: 1.5rem;
   padding: 0.3rem 0.5rem;
@@ -74,5 +81,24 @@ h1 {
 .arrow.right { right: 0; }
 
 .arrow:hover {
-  background: rgba(0,0,0,0.7);
+  background: rgba(255,255,255,0.5);
+}
+
+/* Genre header */
+.genre-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.left-side {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vote-count {
+  margin: 0;
+  color: #fff;
 }
