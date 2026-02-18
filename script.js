@@ -1,17 +1,4 @@
 // ============================
-// FIREBASE IMPORTS
-// ============================
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { 
-  getFirestore, 
-  doc, 
-  getDoc, 
-  setDoc, 
-  updateDoc, 
-  increment 
-} from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-
-// ============================
 // FIREBASE CONFIG
 // ============================
 const firebaseConfig = {
@@ -24,8 +11,9 @@ const firebaseConfig = {
   measurementId: "G-6G8VQ2LBKJ"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 // ============================
 // GALLERY DATA
@@ -98,14 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContainer.appendChild(section);
 
     // Voting system
-    const docRef = doc(db, "votes", genreName);
+    const docRef = db.collection("votes").doc(genreName);
     const votedKey = "voted_" + genreName;
 
     async function loadVotes() {
       try {
-        const snap = await getDoc(docRef);
-        voteCount.querySelector("span").textContent = snap.exists() ? snap.data().count : 0;
-        if (!snap.exists()) await setDoc(docRef, { count: 0 });
+        const snap = await docRef.get();
+        voteCount.querySelector("span").textContent = snap.exists ? snap.data().count : 0;
+        if (!snap.exists) await docRef.set({ count: 0 });
       } catch (e) { console.error(e); }
     }
 
@@ -116,11 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
     heartBtn.addEventListener("click", async () => {
       try {
         if (localStorage.getItem(votedKey)) {
-          await updateDoc(docRef, { count: increment(-1) });
+          await docRef.update({ count: firebase.firestore.FieldValue.increment(-1) });
           localStorage.removeItem(votedKey);
           heartBtn.textContent = "🤍";
         } else {
-          await updateDoc(docRef, { count: increment(1) });
+          await docRef.update({ count: firebase.firestore.FieldValue.increment(1) });
           localStorage.setItem(votedKey, "true");
           heartBtn.textContent = "❤️";
         }
