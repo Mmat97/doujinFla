@@ -10,6 +10,8 @@ const firebaseConfig = {
   appId: "1:758136407006:web:4d7a40d9bcdff4fca0134f",
   measurementId: "G-6G8VQ2LBKJ"
 };
+
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
@@ -28,10 +30,11 @@ const galleryData = {
 };
 
 // ============================
-// BUILD SECTIONS
+// MAIN FUNCTION
 // ============================
-document.addEventListener("DOMContentLoaded", () => {
+function buildLibrary() {
   const mainContainer = document.getElementById("library-container");
+  if (!mainContainer) return;
 
   Object.keys(galleryData).forEach(genreName => {
     const section = document.createElement("section");
@@ -94,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         voteCount.querySelector("span").textContent = snap.exists ? snap.data().count : 0;
         if (!snap.exists) await docRef.set({ count: 0 });
       } catch (e) {
+        console.warn("Firestore unavailable, using fallback:", e);
         voteCount.querySelector("span").textContent = 0;
       }
     }
@@ -135,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const fileName = itemData.url.split("/").pop();
 
       const img = document.createElement("img");
-      img.src = `./images/${fileName}.jpg`; // relative path
+      img.src = `./images/${fileName}.jpg`;
       img.onerror = function() {
         this.onerror = null;
         this.src = "https://via.placeholder.com/200x300?text=Click+to+open";
@@ -164,3 +168,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
       carousel.scrollBy({ left: -(itemWidth * getVisibleItems()), behavior: "smooth" });
     });
+
+    rightArrow.addEventListener("click", () => {
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
+      carousel.scrollBy({ left: itemWidth * getVisibleItems(), behavior: "smooth" });
+    });
+
+    // Swipe support
+    let xStart = null;
+    carousel.addEventListener("touchstart", e => xStart = e.touches[0].clientX, false);
+    carousel.addEventListener("touchmove", e => {
+      if (!xStart) return;
+      const xEnd = e.touches[0].clientX;
+      const xDiff = xStart - xEnd;
+      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
+      const visible = getVisibleItems();
+
+      if (xDiff > 50) carousel.scrollBy({ left: itemWidth * visible, behavior: "smooth" });
+      else if (xDiff < -50) carousel.scrollBy({ left: -(itemWidth * visible), behavior: "smooth" });
+
+      xStart = null;
+    }, false);
+  });
+}
+
+// ============================
+// RUN AFTER WINDOW LOAD
+// ============================
+window.onload = function() {
+  buildLibrary();
+};
