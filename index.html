@@ -1,46 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D-LIBRARY</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D-LIBRARY</title>
+  <link rel="stylesheet" href="styles.css">
 
-<!-- Cache-busting: generate a timestamp query string -->
-<script>
-  const cacheBust = new Date().getTime();
-  const head = document.getElementsByTagName('head')[0];
+  <!-- Firebase scripts with defer -->
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js" defer></script>
 
-  // Stylesheet
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = `styles.css?v=${cacheBust}`;
-  head.appendChild(link);
-
-  // Firebase CDN
-  const firebaseAppScript = document.createElement('script');
-  firebaseAppScript.src = "https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js";
-  head.appendChild(firebaseAppScript);
-
-  const firebaseFirestoreScript = document.createElement('script');
-  firebaseFirestoreScript.src = "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js";
-  head.appendChild(firebaseFirestoreScript);
-</script>
+  <!-- Your main JS -->
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-<h1>D-LIBRARY</h1>
-
-<!-- Container where JS will inject genre sections -->
-<div id="library-container"></div>
-
-<!-- Script with cache-busting -->
-<script>
-  const cacheBustScript = new Date().getTime();
-  const scriptEl = document.createElement('script');
-  scriptEl.type = 'text/javascript';
-  scriptEl.src = `script.js?v=${cacheBustScript}`;
-  document.body.appendChild(scriptEl);
-</script>
-
+  <h1>D-LIBRARY</h1>
+  <div id="library-container"></div>
 </body>
 </html>
