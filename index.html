@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>D-Library</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-LIBRARY</title>
+
+<!-- Cache-busting: generate a timestamp query string -->
+<script>
+  const cacheBust = new Date().getTime();
+  const head = document.getElementsByTagName('head')[0];
+
+  // Stylesheet
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = `styles.css?v=${cacheBust}`;
+  head.appendChild(link);
+
+  // Firebase CDN
+  const firebaseAppScript = document.createElement('script');
+  firebaseAppScript.src = "https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js";
+  head.appendChild(firebaseAppScript);
+
+  const firebaseFirestoreScript = document.createElement('script');
+  firebaseFirestoreScript.src = "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js";
+  head.appendChild(firebaseFirestoreScript);
+</script>
 </head>
 <body>
-  <h1>D-Library</h1>
-  <div id="library-container"></div>
 
-  <!-- Firebase scripts -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<h1>D-LIBRARY</h1>
 
-  <!-- Your main JS -->
-  <script src="script.js" defer></script>
+<!-- Container where JS will inject genre sections -->
+<div id="library-container"></div>
+
+<!-- Script with cache-busting -->
+<script>
+  const cacheBustScript = new Date().getTime();
+  const scriptEl = document.createElement('script');
+  scriptEl.type = 'text/javascript';
+  scriptEl.src = `script.js?v=${cacheBustScript}`;
+  document.body.appendChild(scriptEl);
+</script>
+
 </body>
 </html>
