@@ -57,50 +57,9 @@ const galleryData = {
   ],
   "Knight's & Magic": [
     { url: "https://www.patreon.com/posts/breasts-and-120933745", subgenre: "evilGirl/blackmailedFemale" }
-  ],
-  "By the Grace of the Gods": [
-    { url: "https://www.patreon.com/posts/mind-control-114808249", subgenre: "shortPost/mindControl" },
-    { url: "https://www.patreon.com/posts/unique-designs-113842499", subgenre: "harem" },
-    { url: "https://www.patreon.com/posts/by-trap-of-town-125730835", subgenre: "imposters/breastFocus" },
-    { url: "https://www.patreon.com/posts/surprise-attack-140600363", subgenre: "grunts" }
-  ],
-  "Isekai Pharmacy": [
-    { url: "https://www.patreon.com/posts/healing-abs-131387288", subgenre: "crossover/romance" },
-    { url: "https://www.patreon.com/posts/ratma-140981845", subgenre: "crossover/romance" }
-  ],
-  "Realist Hero": [
-    { url: "https://www.patreon.com/posts/how-realist-hero-132023588", subgenre: "harem/milfs/motherDaughter" }
-  ],
-  "Yandere Dark Elf": [
-    { url: "https://www.patreon.com/posts/brainwashed-by-132410664", subgenre: "brainwashing/beach" }
-  ],
-  "Saijaku Bahamut": [
-    { url: "https://www.patreon.com/posts/lux-x-alterize-113563060", subgenre: "romance" }
-  ],
-  "Hundred": [
-    { url: "https://www.patreon.com/posts/hundred-fold-114763597", subgenre: "brainwashing/breastFocus" },
-    { url: "https://www.patreon.com/posts/mind-swapped-119063332", subgenre: "beach/damsel" },
-    { url: "https://www.patreon.com/posts/mind-swapped-119063397", subgenre: "beach/damsel" },
-    { url: "https://www.patreon.com/posts/claudias-117962535", subgenre: "harem/imposters/rematch" },
-    { url: "https://www.patreon.com/posts/new-doujinshi-142199851", subgenre: "evilGuy/imposters" }
-  ],
-  "Railgun": [
-    { url: "https://www.patreon.com/posts/deadly-124205476", subgenre: "feet/disgust/harem" }
-  ],
-  "Cheat Skill Isekai": [
-    { url: "https://www.patreon.com/posts/handicap-for-124946354", subgenre: "feet/sports" },
-    { url: "https://www.patreon.com/posts/i-got-caught-by-118315972", subgenre: "imposters/dream" }
-  ],
-  "Naruto": [
-    { url: "https://www.patreon.com/posts/aftermath-of-135659570", subgenre: "interrogation/disgust/feet/breastFocus" }
-  ],
-  "One Piece": [
-    { url: "https://www.patreon.com/posts/goodbye-mr-123493421", subgenre: "mindControl/feet" }
   ]
-  // Continue in the same format for all remaining sections...
+  // continue adding other sections here...
 };
-
-
 
 // ============================
 // BUILD SECTIONS
@@ -109,12 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContainer = document.getElementById("library-container");
 
   Object.keys(galleryData).forEach(genreName => {
-    // Section
+    // ----- Section -----
     const section = document.createElement("section");
     section.classList.add("genre");
     section.dataset.genre = genreName;
 
-    // Header
+    // ----- Header -----
     const header = document.createElement("div");
     header.classList.add("genre-header");
 
@@ -139,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     header.appendChild(h2);
     section.appendChild(header);
 
-    // Carousel
+    // ----- Carousel -----
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
 
@@ -158,10 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
     carouselContainer.appendChild(carousel);
     carouselContainer.appendChild(rightArrow);
     section.appendChild(carouselContainer);
-
     mainContainer.appendChild(section);
 
-    // --- Voting system ---
+    // ----- Voting system -----
     const docRef = doc(db, "votes", genreName);
     const votedKey = "voted_" + genreName;
 
@@ -196,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadVotes();
     checkLocalVote();
 
-    // --- Populate carousel ---
+    // ----- Populate carousel items -----
     galleryData[genreName].forEach(itemData => {
       const fileName = itemData.url.split("/").pop();
       const item = document.createElement("div");
@@ -224,24 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
       carousel.appendChild(item);
     });
 
-    // --- Carousel arrows ---
-
-    carouselContainer.appendChild(leftArrow);
-    carouselContainer.appendChild(carousel);
-    carouselContainer.appendChild(rightArrow);
-    section.appendChild(carouselContainer);
-
-    mainContainer.appendChild(section);
-
-    // --- Carousel arrows & swipe support (REPLACE old handlers here) ---
-
-
-
-
-    // --- Carousel arrows (responsive scroll) ---
+    // ----- Carousel arrows & swipe support -----
     function getVisibleItems() {
-      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10; // item + gap
-      return Math.floor(carousel.offsetWidth / itemWidth);
+      const item = carousel.querySelector(".carousel-item");
+      if (!item) return 1;
+      const itemWidth = item.offsetWidth + 10; // include gap
+      return Math.floor(carousel.offsetWidth / itemWidth) || 1;
     }
 
     leftArrow.addEventListener("click", () => {
@@ -256,29 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
       carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
     });
 
-    // --- Swipe support ---
-    let xStart = null;
-    carousel.addEventListener("touchstart", e => xStart = e.touches[0].clientX, false);
-    carousel.addEventListener("touchmove", e => {
-      if (!xStart) return;
-      let xEnd = e.touches[0].clientX;
-      let xDiff = xStart - xEnd;
-      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
-      const visibleItems = getVisibleItems();
-
-      if (xDiff > 50) { // swipe left
-        carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
-      } else if (xDiff < -50) { // swipe right
-        carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
-      }
-      xStart = null;
-    }, false);
-
-
-
-
-
-
     // Swipe support
     let xStart = null;
     carousel.addEventListener("touchstart", e => xStart = e.touches[0].clientX, false);
@@ -286,15 +209,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!xStart) return;
       let xEnd = e.touches[0].clientX;
       let xDiff = xStart - xEnd;
+      const visibleItems = getVisibleItems();
       const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
 
-      if (xDiff > 50) { // swipe left
+      if (xDiff > 50) {          // swipe left
         carousel.scrollBy({ left: itemWidth * visibleItems, behavior: "smooth" });
-      } else if (xDiff < -50) { // swipe right
+      } else if (xDiff < -50) {  // swipe right
         carousel.scrollBy({ left: -(itemWidth * visibleItems), behavior: "smooth" });
       }
       xStart = null;
     }, false);
 
-  });
-});
+  }); // end of Object.keys().forEach
+}); // end of DOMContentLoaded
