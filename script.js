@@ -1,6 +1,5 @@
 // ============================
-// FIREBASE IMPORTS
-// ============================
+// FIREBASE IMPORTS (top-level!)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import { 
   getFirestore, 
@@ -13,7 +12,6 @@ import {
 
 // ============================
 // FIREBASE CONFIG
-// ============================
 const firebaseConfig = {
   apiKey: "AIzaSyA3TPLeIVhSgPClBcF0Y_IztKJqTYVZWJc",
   authDomain: "doujinflash.firebaseapp.com",
@@ -29,8 +27,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ============================
-// MAIN LOGIC
-// ============================
+// DOM CONTENT LOADED
 document.addEventListener("DOMContentLoaded", () => {
 
   // --- VOTING SYSTEM ---
@@ -46,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const snap = await getDoc(docRef);
         countSpan.textContent = snap.exists() ? snap.data().count : 0;
         if (!snap.exists()) await setDoc(docRef, { count: 0 });
-      } catch (e) { console.error("Error loading votes:", e); }
+      } catch (e) { console.error(e); }
     }
 
     function checkLocalVote() {
@@ -66,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
           heartBtn.textContent = "❤️";
         }
         loadVotes();
-      } catch (e) { console.error("Error updating vote:", e); }
+      } catch (e) { console.error(e); }
     });
 
     loadVotes();
