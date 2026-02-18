@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>D-LIBRARY</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-LIBRARY</title>
 
-  <!-- Firebase scripts with defer -->
-  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js" defer></script>
-  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js" defer></script>
+<!-- CSS -->
+<link rel="stylesheet" href="./styles.css">
 
-  <!-- Your main JS -->
-  <script src="script.js" defer></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js" defer></script>
+
 </head>
 <body>
-  <h1>D-LIBRARY</h1>
-  <div id="library-container"></div>
+
+<h1>D-LIBRARY</h1>
+
+<!-- Container where JS will inject genre sections -->
+<div id="library-container"></div>
+
+<!-- Main script -->
+<script src="./script.js" defer></script>
+
 </body>
 </html>

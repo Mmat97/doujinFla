@@ -134,18 +134,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const fileName = itemData.url.split("/").pop();
 
-      // Image element
       const img = document.createElement("img");
-      img.src = `./images/${fileName}.jpg`; // attempt local
+      img.src = `./images/${fileName}.jpg`; // relative path
       img.onerror = function() {
         this.onerror = null;
-        this.src = "https://via.placeholder.com/200x300?text=Click+to+open"; // fallback
+        this.src = "https://via.placeholder.com/200x300?text=Click+to+open";
       };
       img.onclick = () => window.open(itemData.url, "_blank");
 
       item.appendChild(img);
 
-      // Subgenre
       if (itemData.subgenre) {
         const subgenreP = document.createElement("p");
         subgenreP.classList.add("subgenre");
@@ -166,26 +164,3 @@ document.addEventListener("DOMContentLoaded", () => {
       const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
       carousel.scrollBy({ left: -(itemWidth * getVisibleItems()), behavior: "smooth" });
     });
-
-    rightArrow.addEventListener("click", () => {
-      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
-      carousel.scrollBy({ left: itemWidth * getVisibleItems(), behavior: "smooth" });
-    });
-
-    // Swipe support
-    let xStart = null;
-    carousel.addEventListener("touchstart", e => xStart = e.touches[0].clientX, false);
-    carousel.addEventListener("touchmove", e => {
-      if (!xStart) return;
-      const xEnd = e.touches[0].clientX;
-      const xDiff = xStart - xEnd;
-      const itemWidth = carousel.querySelector(".carousel-item").offsetWidth + 10;
-      const visible = getVisibleItems();
-
-      if (xDiff > 50) carousel.scrollBy({ left: itemWidth * visible, behavior: "smooth" });
-      else if (xDiff < -50) carousel.scrollBy({ left: -(itemWidth * visible), behavior: "smooth" });
-
-      xStart = null;
-    }, false);
-  });
-});
