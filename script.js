@@ -62,8 +62,8 @@ function buildLibrary() {
     const h2 = document.createElement("h2");
     h2.textContent = genreName;
 
-    header.appendChild(leftSide);
     header.appendChild(h2);
+    header.appendChild(leftSide);
     section.appendChild(header);
 
     // Carousel

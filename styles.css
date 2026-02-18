@@ -28,7 +28,20 @@ h1 { text-align: center; margin: 20px 0; color: #fff; }
 .arrow.left { left: 0; } .arrow.right { right: 0; }
 .arrow:hover { background: rgba(255,255,255,0.5); }
 
-.genre-header { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; }
+.genre-header {
+  display: flex;
+  justify-content: flex-start; /* Align content to the left */
+  align-items: center;
+  gap: 20px; /* Space between title and heart/votes */
+}
+
+.genre-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+
 .left-side { display: flex; align-items: center; gap: 10px; }
 
 .heart-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 0; margin-right: 8px; transition: transform 0.2s; }
