@@ -96,6 +96,9 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: #111;   /* dark black/gray box */
+  padding: 5px 10px;
+  border-radius: 6px;
 }
 
 /* Heart button */
