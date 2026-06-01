@@ -22,60 +22,25 @@ const db = firebase.firestore();
 // GALLERY DATA
 // ============================
 const galleryData = {
-  "Isekai Smartphone": [
-    { url: "https://www.patreon.com/posts/defeated-by-zako-123920788", subgenre: "feet/dream/harem" },
-    { url: "https://www.patreon.com/posts/defeated-by-zako-124092807", subgenre: "motherDaughter/bath" },
-    { url: "https://www.patreon.com/posts/royal-127866137", subgenre: "milfs/beach" },
-    { url: "https://www.patreon.com/posts/harem-switch-133782770", subgenre: "crossover/brainwashing/harem" },
-    { url: "https://www.patreon.com/posts/in-another-world-115302353", subgenre: "evilGuy/powerDrain" },
-    { url: "https://www.patreon.com/posts/isekai-2-5-138342705", subgenre: "grunts/olderFemales" },
-    { url: "https://www.patreon.com/posts/isekai-alternate-136385040", subgenre: "milfs/imposters" }
-  ],
-
-  "Spirit Chronicles": [
-    { url: "https://www.patreon.com/posts/defeated-by-113020062", subgenre: "interrogation/rematch" },
-    { url: "https://www.patreon.com/posts/rio-and-3-armies-115877764", subgenre: "dream/imposters" },
-    { url: "https://www.patreon.com/posts/liselottes-honey-120002486", subgenre: "feet/seduction" }
-  ],
-
   "Maid Dragon": [
     { url: "https://www.patreon.com/posts/new-doujinshi-140518041", subgenre: "imposters/rematch" }
   ],
 
-  "Musaigen no Phantom World": [
-    { url: "https://www.patreon.com/posts/haruhiko-x-x-111367831", subgenre: "harem" }
-  ],
-
-  "Tsugumomo": [
-    { url: "https://www.patreon.com/posts/tsugualbum-115118952", subgenre: "romance/brainwashing" }
-  ],
-
-  "Knight's & Magic": [
-    { url: "https://www.patreon.com/posts/breasts-and-120933745", subgenre: "evilGirl/blackmailedFemale" }
-  ],
 
   "By the Grace of the Gods": [
     { url: "https://www.patreon.com/posts/mind-control-114808249", subgenre: "shortPost/mindControl" },
     { url: "https://www.patreon.com/posts/unique-designs-113842499", subgenre: "harem" },
     { url: "https://www.patreon.com/posts/by-trap-of-town-125730835", subgenre: "imposters/breastFocus" },
-    { url: "https://www.patreon.com/posts/surprise-attack-140600363", subgenre: "grunts" }
+    { url: "https://www.patreon.com/posts/surprise-attack-140600363", subgenre: "grunts" },
+    { url: "https://www.patreon.com/posts/by-trap-of-157253869", subgenre: "grunts" }
   ],
 
-  "Isekai Pharmacy": [
-    { url: "https://www.patreon.com/posts/healing-abs-131387288", subgenre: "crossover/romance" },
-    { url: "https://www.patreon.com/posts/ratma-140981845", subgenre: "crossover/romance" }
-  ],
 
-  "Realist Hero": [
-    { url: "https://www.patreon.com/posts/how-realist-hero-132023588", subgenre: "harem/milfs/motherDaughter" }
-  ],
 
-  "Yandere Dark Elf": [
-    { url: "https://www.patreon.com/posts/brainwashed-by-132410664", subgenre: "brainwashing/beach" }
-  ],
 
   "Saijaku Bahamut": [
-    { url: "https://www.patreon.com/posts/lux-x-alterize-113563060", subgenre: "romance" }
+    { url: "https://www.patreon.com/posts/lux-x-alterize-113563060", subgenre: "romance" },
+    { url: "https://www.patreon.com/posts/defeated-bahamut-154268968", subgenre: "romance" }
   ],
 
   "Hundred": [
@@ -107,14 +72,6 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/full-dive-135517417", subgenre: "evilGirl" }
   ],
 
-  "Grimgar": [
-    { url: "https://www.patreon.com/posts/reward-complete-124944229", subgenre: "romance/damsel" }
-  ],
-
-  "Solo Leveling": [
-    { url: "https://www.patreon.com/posts/nurse-leveling-122241517", subgenre: "romance" }
-  ],
-
   "Magic Kaito/Conan": [
     { url: "https://www.patreon.com/posts/shinichi-kudo-x-128025510", subgenre: "romance/breastFocus" },
     { url: "https://www.patreon.com/posts/milfs-kaito-128056913", subgenre: "milfs/breastFocus" }
@@ -128,22 +85,6 @@ const galleryData = {
 
   "Komi-San": [
     { url: "https://www.patreon.com/posts/galgun-ex-shuuko-111164419", subgenre: "milf" }
-  ],
-
-  "Miss Caretaker": [
-    { url: "https://www.patreon.com/posts/unused-trample-118890327", subgenre: "feet" }
-  ],
-
-  "Goddess Dormitory": [
-    { url: "https://www.patreon.com/posts/hypnosis-burglar-117981549", subgenre: "evilGuy/brainwashing" }
-  ],
-
-  "Tomo-Chan is a Girl": [
-    { url: "https://www.patreon.com/posts/sex-practice-123946027", subgenre: "milfs" }
-  ],
-
-  "To-Love Ru": [
-    { url: "https://www.patreon.com/posts/interrogation-124319257", subgenre: "harem/feet" }
   ],
 
   "Shield Hero": [
@@ -163,7 +104,8 @@ const galleryData = {
   ],
 
   "Infinite Stratos": [
-    { url: "https://www.patreon.com/posts/jealousy-and-134478745", subgenre: "grunts/olderFemales" }
+    { url: "https://www.patreon.com/posts/jealousy-and-134478745", subgenre: "grunts/olderFemales" },
+    { url: "https://www.patreon.com/posts/byakushiki-plan-151465703", subgenre: "grunts/olderFemales" }
   ],
 
     "Rakudai Cavalry": [
@@ -177,18 +119,14 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/dragonar-harem-2-134297558", subgenre: "harem/dreams" },
     { url: "https://www.patreon.com/posts/new-free-142617721", subgenre: "evilGirl/disgust/blackmailedFemale" },
     { url: "https://www.patreon.com/posts/maid-x-maid-131192499", subgenre: "crossover/romance" },
-    { url: "https://www.patreon.com/posts/dragonar-academy-120371081", subgenre: "compilation" }
+    { url: "https://www.patreon.com/posts/dragonar-academy-120371081", subgenre: "compilation" },
+    { url: "https://www.patreon.com/posts/saving-primrose-151911402", subgenre: "grunts/romance" }
   ],
 
   "Atelier Meister": [
     { url: "https://www.patreon.com/posts/kurts-nightmare-127590370", subgenre: "harem/dreams" },
     { url: "https://www.patreon.com/posts/confusion-plan-126238720", subgenre: "interrogation/breastFocus" },
     { url: "https://www.patreon.com/posts/crossover-ex-go-128677066", subgenre: "romance/harem" }
-  ],
-
-  "Fruitmaster": [
-    { url: "https://www.patreon.com/posts/nightmare-fruit-124888635", subgenre: "feet/harem/imposters/dreams" },
-    { url: "https://www.patreon.com/posts/signe-jaildoll-125150671", subgenre: "compilation" }
   ],
 
   "Noble on the Brink of Ruin": [
@@ -198,23 +136,11 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/bittersweet-125150517", subgenre: "battle" }
   ],
 
-  "Weakest Crest": [
-    { url: "https://www.patreon.com/posts/trapped-by-113574777", subgenre: "breastFocus" }
-  ],
-
-  "Hidden Dungeon": [
-    { url: "https://www.patreon.com/posts/aniverse-noir-111993469", subgenre: "feet/betrayal" }
-  ],
 
   "Sweet Reincarnation": [
     { url: "https://www.patreon.com/posts/pastrys-132635025", subgenre: "dreams/harem" }
   ],
 
-  "Evil Lord with Empire": [
-    { url: "https://www.patreon.com/posts/based-on-evil-of-128324689", subgenre: "breastFocus" },
-    { url: "https://www.patreon.com/posts/im-evil-lord-to-128810407", subgenre: "olderFemales" },
-    { url: "https://www.patreon.com/posts/anti-aging-gold-132476690", subgenre: "evilGirl/incest/imposters" }
-  ],
 
   "Isekai Red Ranger": [
     { url: "https://www.patreon.com/posts/red-ranger-and-128405156", subgenre: "imposters/powerDrain/breastFocus" }
@@ -238,9 +164,7 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/weaponized-video-125687077", subgenre: "sports/beach" }
   ],
 
-  "Cute Girl in the Hero’s Party": [
-    { url: "https://www.patreon.com/posts/interrogated-by-150177807", subgenre: "milfs/interrogation" }
-  ],
+
 
   "A-Rank Party": [
     { url: "https://www.patreon.com/posts/short-comic-128087610", subgenre: "antiNTR" },
@@ -250,9 +174,7 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/destroy-victory-129542195", subgenre: "dreams/imposters" }
   ],
 
-  "The Healer Who Was": [
-    { url: "https://www.patreon.com/posts/healer-is-in-115627195", subgenre: "disgust/imposters" }
-  ],
+
 
   "Digimon Time Stranger": [
     { url: "https://www.patreon.com/posts/fake-erika-131553443", subgenre: "dreams/imposters" },
@@ -262,9 +184,6 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/damsel-to-149791269", subgenre: "damsel/tickling/romance" }
   ],
 
-  "Xenoblade": [
-    { url: "https://www.patreon.com/posts/confess-your-120512035", subgenre: "interrogation" }
-  ],
 
   "Dragon Quest 3D": [
     { url: "https://www.patreon.com/posts/chest-quest-xi-136022246", subgenre: "damsel/grunts" }
@@ -279,9 +198,7 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/evil-ambush-135792084", subgenre: "damsel/tickling" }
   ],
 
-  "Jak": [
-    { url: "https://www.patreon.com/posts/based-on-that-3s-128003700", subgenre: "NTR" }
-  ],
+
     "Digimon Time Stranger Game Advice": [
     { url: "https://www.patreon.com/posts/thoughts-on-time-142668461" },
     { url: "https://www.patreon.com/posts/just-started-dlc-148819361" },
@@ -289,9 +206,11 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/replaying-times-150052573" }
   ],
 
-  "Goddess of Victory": [
-    { url: "https://www.patreon.com/posts/coin-rain-145390436", subgenre: "sports/harem" }
+    "8th Son Are You Kidding Me": [
+    { url: "https://www.patreon.com/posts/ambushed-by-are-155390942" }
   ],
+
+
 
   "Tensei Kizoku": [
     { url: "https://www.patreon.com/posts/aristocrats-116960323", subgenre: "dreams/harem" },
@@ -304,23 +223,19 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/sore-succubus-149009867", subgenre: "rematch/mindControl" }
   ],
 
-  "SAO": [
-    { url: "https://www.patreon.com/posts/reversal-of-116123090", subgenre: "evilGuy/imposters/harem" }
-  ],
 
   "Kakushite": [
     { url: "https://www.patreon.com/posts/trap-for-s-rank-131494278", subgenre: "betrayal/blackmailedFemale" }
   ],
 
-  "Bakugan Anime": [
-    { url: "https://www.patreon.com/posts/popularity-plan-128853619", subgenre: "feet/olderFemales" }
-  ],
 
   "Digimon Anime": [
     { url: "https://www.patreon.com/posts/hostage-dilemma-136721843", subgenre: "damsel/tickling" },
     { url: "https://www.patreon.com/posts/my-hero-f-130039841", subgenre: "damsel/tickling/romance/harem" },
     { url: "https://www.patreon.com/posts/ranamons-schemes-139869855", subgenre: "damsel/olderFemales" },
-    { url: "https://www.patreon.com/posts/spiral-vs-148715280", subgenre: "romance/milf" }
+    { url: "https://www.patreon.com/posts/spiral-vs-148715280", subgenre: "romance/milf" },
+    { url: "https://www.patreon.com/posts/harem-trap-151258094", subgenre: "grunts/harem" }
+  ],
   ],
 
   "Digimon Survive": [
@@ -360,27 +275,15 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/ogre-attract-136284662", subgenre: "crossover/harem" }
   ],
 
-  "Buddyfight": [
-    { url: "https://www.patreon.com/posts/card-and-charm-125555671", subgenre: "romance/grunts" }
-  ],
 
-  "Yugioh": [
-    { url: "https://www.patreon.com/posts/yu-gi-oh-tag-rua-114377049", subgenre: "disgust" },
-    { url: "https://www.patreon.com/posts/unused-samples-119860402", subgenre: "compilation" }
-  ],
 
-  "Dragon Collection": [
-    { url: "https://www.patreon.com/posts/rubicas-trap-113943610", subgenre: "betrayal" }
-  ],
 
-  "Precure": [
-    { url: "https://www.patreon.com/posts/black-pepper-123548143", subgenre: "milfs/blackmailedFemale/evilGirl" }
-  ],
 
   "Disgaea": [
     { url: "https://www.patreon.com/posts/laharl-unit-130961698", subgenre: "grunts/romance" },
     { url: "https://www.patreon.com/posts/new-short-140385443", subgenre: "harem/breastFocus" },
     { url: "https://www.patreon.com/posts/based-on-disgaea-136780846", subgenre: "shortPost/breastFocus" }
+    { url: "https://www.patreon.com/posts/hour-of-reset-151763906", subgenre: "grunts" }
   ],
 
   "Megaman": [
@@ -388,18 +291,12 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/beauties-and-131024115", subgenre: "olderFemales/mindControl" }
   ],
 
-  "Gargantia": [
-    { url: "https://www.patreon.com/posts/enzan-vs-123315024", subgenre: "crossover/damsel/tickling" },
-    { url: "https://www.patreon.com/posts/saaya-and-123581746", subgenre: "beach/compilation" }
-  ],
+
 
   "Appraiser": [
     { url: "https://www.patreon.com/posts/weakest-against-138070704", subgenre: "harem/disgust/mindControl" }
   ],
 
-  "Irregular Magic School": [
-    { url: "https://www.patreon.com/posts/trial-dating-134227661", subgenre: "training/milfs" }
-  ],
 
   "Tales of": [
     { url: "https://www.patreon.com/posts/boku-wa-yuusha-1-133232828", subgenre: "evilGuy/imposters" },
@@ -419,18 +316,11 @@ const galleryData = {
   ],
 
   "Game Translations": [
-    { url: "https://drive.google.com/file/d/11w82lEjf0ttE1fCfzezbujpz8xQriIOZ/view?usp=sharing", subgenre: "excessm" }
+    { url: "https://drive.google.com/file/d/11w82lEjf0ttE1fCfzezbujpz8xQriIOZ/view?usp=sharing", subgenre: "ChouetsuYugi" }
   ],
 
   "Short Posts": [
-    { url: "https://www.patreon.com/posts/various-samples-117985120" },
-    { url: "https://www.patreon.com/posts/unused-samples-119860402" },
-    { url: "https://www.patreon.com/posts/patreon-of-124947100" },
-    { url: "https://www.patreon.com/posts/would-you-fall-129042170" },
-    { url: "https://www.patreon.com/posts/crack-ship-mewi-131100188" },
     { url: "https://www.patreon.com/posts/takaokas-trap-131117097" },
-    { url: "https://www.patreon.com/posts/mama-yufufu-132023557" },
-    { url: "https://www.patreon.com/posts/emma-frosts-134150595" },
     { url: "https://www.patreon.com/posts/silent-comic-2-134994727" },
     { url: "https://www.patreon.com/posts/yuffie-hades-cup-139592439" },
     { url: "https://www.patreon.com/posts/jealousy-139598891" },
@@ -438,10 +328,7 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/captured-and-by-139667830" },
     { url: "https://www.patreon.com/posts/strike-blood-31-133810493" },
     { url: "https://www.patreon.com/posts/felicia-captured-140656436" },
-    { url: "https://www.patreon.com/posts/crack-ship-felu-140656080" },
-    { url: "https://www.patreon.com/posts/domino-from-140982969" },
-    { url: "https://www.patreon.com/posts/interrogation-141710559" },
-    { url: "https://www.patreon.com/posts/compilation-11-136046302" }
+    { url: "https://www.patreon.com/posts/crack-ship-felu-140656080" }
   ]
 
   
