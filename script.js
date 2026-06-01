@@ -236,7 +236,7 @@ const galleryData = {
     { url: "https://www.patreon.com/posts/spiral-vs-148715280", subgenre: "romance/milf" },
     { url: "https://www.patreon.com/posts/harem-trap-151258094", subgenre: "grunts/harem" }
   ],
-  ],
+
 
   "Digimon Survive": [
     { url: "https://www.patreon.com/posts/before-fighting-118330569", subgenre: "imposters" }
@@ -282,7 +282,7 @@ const galleryData = {
   "Disgaea": [
     { url: "https://www.patreon.com/posts/laharl-unit-130961698", subgenre: "grunts/romance" },
     { url: "https://www.patreon.com/posts/new-short-140385443", subgenre: "harem/breastFocus" },
-    { url: "https://www.patreon.com/posts/based-on-disgaea-136780846", subgenre: "shortPost/breastFocus" }
+    { url: "https://www.patreon.com/posts/based-on-disgaea-136780846", subgenre: "shortPost/breastFocus" },
     { url: "https://www.patreon.com/posts/hour-of-reset-151763906", subgenre: "grunts" }
   ],
 
